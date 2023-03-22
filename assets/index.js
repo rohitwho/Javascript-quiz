@@ -211,6 +211,7 @@ next.addEventListener("click", () => {
     }
 
     else {
+        restartBut.style.display = "none";
         questionText.innerHTML = "Do you wanna give it another try?"
         dNone()
         scoret.innerText = `You answered ${score}/${quizQuestions.length} questions correctly `
@@ -238,27 +239,31 @@ function dNone() {
     li[1].style.display = "none";
     li[2].style.display = "none";
     li[3].style.display = "none";
+    next.style.display = "none";
+    startButton.style.display = "inline";
 };
 ////////////////////////////////////////////////////////////
 var secondsLeft = 60;
 
 function setTime() {
     // Sets interval in variable
+    
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = secondsLeft + " seconds left till Quiz Ends";
 
 
-        if (secondsLeft === 0) {
+        if (secondsLeft === 0 && quizQuestions[5]) {
             timeEl.textContent = "Quiz over"
+            
             dNone()
             questionText.innerHTML = "Do you wanna give it another try?"
-            restartBut.style.display = "inline";
-            next.style.display = "none";
-            startButton.style.display = "none";
+            
+            
+            
             // Stops execution of action at set interval
 
-
+        
           
 
         }
