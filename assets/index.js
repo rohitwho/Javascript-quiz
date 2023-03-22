@@ -75,64 +75,7 @@ const quizQuestions = [
              correct: "b",
         
     }
-    /*,
-    {
-        question: "Which language runs in a web browser 1?",
-        answers: [
-            { a: 'Kindaaaaa', correct: true },
-            { b: 'YES!!!', correct: false },
-            { c: 'Um no', correct: false },
-            { d: 'IDK', correct: false }
-        ]
-    },
-    {
-        question: "Which language runs in a web browser 2?",
-        answers: [
-            { a: 'Kindaaaaaa', correct: false },
-            { b: 'YES!!!', correct: false },
-            { c: 'Um no', correct: true },
-            { d: 'IDK', correct: false }
-        ]
-    },
-    {
-        question: "Which language runs in a web browser3?",
-        answers: [
-            { a: 'Kinda', correct: false },
-            { b: 'YES!!!', correct: true },
-            { c: 'Um no', correct: false },
-            { d: 'IDK', correct: false }
-        ]
-    },
-    {
-        question: "Which language runs in a web browser 4?",
-        answers: [
-            { a: 'Kinda', correct: false },
-            { b: 'YES!!!', correct: true },
-            { c: 'Um no', correct: false },
-            { d: 'IDK', correct: false }
-        ]
-
-    },
-    {
-        question: "Which language runs in a web browser 5?",
-        answers: [
-            { a: 'Kinda', correct: false },
-            { b: 'YES!!!', correct: true },
-            { c: 'Um no', correct: false },
-            { d: 'IDK', correct: false }
-        ]
-
-    },
-    {
-        question: "Which language runs in a web browser6?",
-        answers: [
-            { a: 'Kinda', correct: false },
-            { b: 'YES!!!', correct: true },
-            { c: 'Um no', correct: false },
-            { d: 'IDK', correct: false },
-        ]
-
-    }*/
+    
 ]
 
 
@@ -141,9 +84,9 @@ const quizQuestions = [
 let currentQuiz = 0
 let score = 0
 
-startButton.addEventListener("click", beginQuiz)
+startButton.addEventListener("click", setTime)
 function beginQuiz() {
-    setTime()
+    
     dBlock()
     deSelectedAns()
     const currentQuizIndex = quizQuestions[currentQuiz]
@@ -180,6 +123,8 @@ function deSelectedAns() {
     answerEls.forEach(answerEls => answerEls.checked = false)
 }
 
+////////////////////////////////////////////////////
+
 function selectedAns() {
     var answer 
      answerEls.forEach(answerEl => {
@@ -211,10 +156,11 @@ next.addEventListener("click", () => {
     }
 
     else {
-        restartBut.style.display = "none";
+        scoret.innerHTML = `<h1>You answered ${score}/${quizQuestions.length} questions correctly<h1>`
+        restartBut.style.display = "inline";
         questionText.innerHTML = "Do you wanna give it another try?"
         dNone()
-        scoret.innerText = `You answered ${score}/${quizQuestions.length} questions correctly `
+       
     }
 
 })
@@ -240,43 +186,34 @@ function dNone() {
     li[2].style.display = "none";
     li[3].style.display = "none";
     next.style.display = "none";
-    startButton.style.display = "inline";
+    startButton.style.display = "none";
 };
 ////////////////////////////////////////////////////////////
-var secondsLeft = 60;
+let secondsLeft = 60;
 
 function setTime() {
-    // Sets interval in variable
-    
-    var timerInterval = setInterval(function () {
-        secondsLeft--;
-        timeEl.textContent = secondsLeft + " seconds left till Quiz Ends";
+    beginQuiz()
+  let timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left";
 
+    if (secondsLeft === 0 && quizQuestions[5]) {
+      timeEl.textContent = "Quiz over";
+      clearInterval(timerInterval);
+      dNone();
+      questionText.innerHTML = "Do you wanna give it another try?";
+    } else if (secondsLeft === 0 ) {
+      timeEl.textContent = "Time's up!";
+      clearInterval(timerInterval);
+      dNone();
+      questionText.innerHTML = "Do you wanna give it another try?";
+    }
+  }, 1000);
 
-        if (secondsLeft === 0 && quizQuestions[5]) {
-            timeEl.textContent = "Quiz over"
-            
-            dNone()
-            questionText.innerHTML = "Do you wanna give it another try?"
-            
-            
-            
-            // Stops execution of action at set interval
-
-        
-          
-
-        }
-
-    }, 1000);
-    setTimeout(function () {
-        clearInterval(timerInterval);
-
-    }, 61000);
-
-
+  setTimeout(function() {
+    clearInterval(timerInterval);
+  }, 61000);
 }
-
 
 
 
