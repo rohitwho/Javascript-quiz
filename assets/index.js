@@ -17,65 +17,65 @@ const scoret = document.querySelector('.scoret')
 const quizQuestions = [
     {
         question: "Which language runs in a web browser?",
-        
-             a: 'HTML                 ',
-             b: 'JAVASCRIPT', 
-             c: 'CSS',
-             d: 'PYTHON',
-             correct: "b",
-        
+
+        a: 'HTML                 ',
+        b: 'JAVASCRIPT',
+        c: 'CSS',
+        d: 'PYTHON',
+        correct: "b",
+
     },
     {
         question: "What is the output of the following code: console.log(typeof(null));",
-        
-             a:  "null",
-             b: "undefined", 
-             c:  "object",
-             d:  "number",
-             correct: "c",
-        
+
+        a: "null",
+        b: "undefined",
+        c: "object",
+        d: "number",
+        correct: "c",
+
     },
     {
         question: "Which of the following is a higher-order function in JavaScript?",
-        
-             a: 'map()',
-             b: "filter()", 
-             c: ' reduce()',
-             d: "All of the above",
-             correct: "d",
-        
+
+        a: 'map()',
+        b: "filter()",
+        c: ' reduce()',
+        d: "All of the above",
+        correct: "d",
+
     },
     {
         question: "Which of the following is a falsy value in JavaScript?",
-        
-             a:  "0",
-             b: '0', 
-             c: ' ""',
-             d: ' All of the above',
-             correct: "d",
-        
+
+        a: "0",
+        b: '0',
+        c: ' ""',
+        d: ' All of the above',
+        correct: "d",
+
     },
     {
         question: "What is the output of the following code: console.log(0.1 + 0.2 === 0.3);",
-        
-             a: "true",
-             b: " false", 
-             c: "array-like",
-             d: "undefined",
-             correct: "b",
-        
+
+        a: "true",
+        b: " false",
+        c: "array-like",
+        d: "undefined",
+        correct: "b",
+
     },
     {
         question: "What is the output of the following code: console.log([1, 2, 3] + [4, 5, 6]);",
-        
-             a:  "[1, 2, 3, 4, 5, 6]",
-             b: '1,2,34,5,6', 
-             c: '123456',
-             d: 'NaN',
-             correct: "b",
-        
+
+        a: "[1, 2, 3, 4, 5, 6]",
+        b: '1,2,34,5,6',
+        c: '123456',
+        d: 'NaN',
+        correct: "b",
+
     }
-    
+
 ]
 
 
@@ -84,7 +84,11 @@ const quizQuestions = [
 let currentQuiz = 0
 let score = 0
 
-startButton.addEventListener("click", setTime)
+startButton.addEventListener("click", () => {
+    beginQuiz();
+    setTime();
+});
+
 function beginQuiz() {
     
     dBlock()
@@ -110,8 +114,14 @@ function beginQuiz() {
 
 
 restartBut.addEventListener("click", function () {
-
-    beginQuiz();
+    currentQuiz = 0;
+    score = 0;
+    clearInterval(timerInterval);
+    
+    scoret.innerHTML ="";
+    beginQuiz(currentQuiz,score);
+    secondsLeft = 60;
+    setTime(secondsLeft);
 });
 
 
@@ -126,8 +136,8 @@ function deSelectedAns() {
 ////////////////////////////////////////////////////
 
 function selectedAns() {
-    var answer 
-     answerEls.forEach(answerEl => {
+    var answer
+    answerEls.forEach(answerEl => {
         if (answerEl.checked) {
             answer = answerEl.id
         }
@@ -150,9 +160,9 @@ next.addEventListener("click", () => {
     currentQuiz++
     if (currentQuiz < quizQuestions.length) {
         beginQuiz()
-       
-        
-        
+
+
+
     }
 
     else {
@@ -160,7 +170,7 @@ next.addEventListener("click", () => {
         restartBut.style.display = "inline";
         questionText.innerHTML = "Do you wanna give it another try?"
         dNone()
-       
+
     }
 
 })
@@ -190,29 +200,33 @@ function dNone() {
 };
 ////////////////////////////////////////////////////////////
 let secondsLeft = 60;
+let timerInterval
 
 function setTime() {
-    beginQuiz()
-  let timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left";
 
-    if (secondsLeft === 0 && quizQuestions[5]) {
-      timeEl.textContent = "Quiz over";
-      clearInterval(timerInterval);
-      dNone();
-      questionText.innerHTML = "Do you wanna give it another try?";
-    } else if (secondsLeft === 0 ) {
-      timeEl.textContent = "Time's up!";
-      clearInterval(timerInterval);
-      dNone();
-      questionText.innerHTML = "Do you wanna give it another try?";
-    }
-  }, 1000);
 
-  setTimeout(function() {
-    clearInterval(timerInterval);
-  }, 61000);
+    timerInterval = setInterval(function () {
+
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + " seconds left";
+
+        if (secondsLeft === 0) {
+            timeEl.textContent = "Quiz over";
+            restartBut.style.display = "inline";
+            clearInterval(timerInterval);
+            dNone();
+            questionText.innerHTML = "Do you wanna give it another try?";
+        } else if (secondsLeft === 0) {
+            timeEl.textContent = "Time's up!";
+            clearInterval(timerInterval);
+            dNone();
+            questionText.innerHTML = "Do you wanna give it another try?";
+        }
+    }, 1000);
+
+    setTimeout(function () {
+        clearInterval(timerInterval);
+    }, 61000);
 }
 
 

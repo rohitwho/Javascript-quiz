@@ -73,7 +73,7 @@ svg {
     font-weight: bold;
     box-shadow:0 6px 12px -2px rgba(#292828,.15);
     border-radius: 10px;
-    background-color: #5a5252;
+    background-color:rgba(255,145,83,1);
     color: white;
     padding: 8px 15px;
     margin:19px;
@@ -116,7 +116,7 @@ button {
   
   .play {
     transition: all .5s ease;
-    transition-delay: 300ms;
+    transition-delay: 900ms;
   }
   
   button:hover svg {
