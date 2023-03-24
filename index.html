@@ -9,25 +9,28 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" /> </h1>
         
    <link href="https://fonts.googleapis.com/css?family=Baskervville:regular,italic" rel="stylesheet" />
-    <title>Quiz</title>
+    <title>Javascript Quiz</title>
 </head>
 
 <body>
    
     
     <div class="container">
-        <h1 class="time">
-             </h1>
+        <h1 class="time"></h1>
+             
         <div class ="scoret"></div>
         <div class="content" id="question-inp"></div>
         <div id="question-text">
            <h2>Welcome To JavaScript Quiz.</h2> 
            
         </div>
+        <!-------------------------------USER INPUT------------------------------------------->
         <div class="userInput" id="answer-inp">
           <p>Enter player's name!</p>
           <input type="text" id = "userValue"> </input>
         </div>
+
+        <!-------------------------------ANSWER LIST------------------------------------------->
         <div id ="answer-buttons" >
 
             <li>
@@ -47,6 +50,7 @@
                 <label for="d" id="d_text">Answer</label>
               </li>
         </div>
+        <!-------------------------------CONTROLS SECTION------------------------------------------->
         <div class="controls">
             <button class="btn" id="restart">Restart</button>
             <button id ="start">
@@ -64,28 +68,13 @@
               <span class="now">Quiz!</span>
               <span class="play">Start</span>
           </button>
+          
             <button class="btn" id="next"> save & next</button>
             <button class="btn" id="submit">Submit</button>
 
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>

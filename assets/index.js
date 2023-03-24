@@ -1,8 +1,6 @@
-const userScore = document.getElementById('user-score')
+
 const questionText = document.getElementById('question-text')
-const answerBut = document.getElementById('answer-buttons')
 const answerEls = document.querySelectorAll('.answerr')
-const buttons = document.querySelectorAll('.btn')
 const a_text = document.getElementById('a_text')
 const b_text = document.getElementById('b_text')
 const c_text = document.getElementById('c_text')
@@ -16,7 +14,7 @@ const scoret = document.querySelector('.scoret')
 const userName = document.querySelector('.userInput')
 const userValue = document.getElementById('userValue')
 
-
+///////////////////QUIZ QUESTIONS/////////////////////////////
 
 const quizQuestions = [
     {
@@ -83,7 +81,7 @@ const quizQuestions = [
 ]
 
 
-
+///////////////////BEGIN QUIZ/////////////////////////////
 
 let currentQuiz = 0
 let score = 0
@@ -97,6 +95,7 @@ function beginQuiz() {
 
     dBlock()
     deSelectedAns()
+
     const currentQuizIndex = quizQuestions[currentQuiz]
 
     questionText.innerHTML = currentQuizIndex.question;
@@ -108,23 +107,32 @@ function beginQuiz() {
     c_text.innerHTML = currentQuizIndex.c;
     d_text.innerHTML = currentQuizIndex.d;
 
+    hideAfter();
+
+
+}
+
+
+function hideAfter() {
     userName.style.display = "none";
     startButton.style.display = "none";
     restartBut.style.display = "none";
     submit.style.display = "none"
     next.style.display = "inline"
 
+};
 
-}
-
+////////////////////////////////////////////////////////////////////
 
 restartBut.addEventListener("click", function () {
+    timeEl.style.display = "flex"
     currentQuiz = 0;
     score = 0;
     clearInterval(timerInterval);
-
     scoret.innerHTML = "";
     beginQuiz(currentQuiz, score);
+
+    //THIS WILL SET THE TIMER TO 60 SEC WHEN USER HIT RESTART// 
     secondsLeft = 60;
     setTime(secondsLeft);
 });
@@ -133,12 +141,12 @@ restartBut.addEventListener("click", function () {
 
 
 
-///////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 function deSelectedAns() {
     answerEls.forEach(answerEls => answerEls.checked = false)
 }
 
-////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 function selectedAns() {
     var answer
@@ -153,7 +161,7 @@ function selectedAns() {
 
 
 
-////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 next.addEventListener("click", () => {
 
@@ -170,8 +178,12 @@ next.addEventListener("click", () => {
 
     }
 
+
+
+
     else {
         scoret.innerHTML = `<h1>Congratulation ${userValue.value} You Answered ${score}/${quizQuestions.length} questions correctly<h1>`
+        timeEl.style.display = "none"
         restartBut.style.display = "inline";
         questionText.innerHTML = "Do you wanna give it another try?"
         dNone()
@@ -182,7 +194,7 @@ next.addEventListener("click", () => {
 
 
 
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 function dBlock() {
     li[0].style.display = "block";
@@ -193,7 +205,7 @@ function dBlock() {
 };
 
 
-//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 function dNone() {
     li[0].style.display = "none";
@@ -204,7 +216,7 @@ function dNone() {
     startButton.style.display = "none";
     userName.style.display = "none";
 };
-////////////////////////////////////////////////////////////
+/////////////////////////SET TIME///////////////////////////////////////////
 let secondsLeft = 60;
 let timerInterval
 
@@ -217,26 +229,24 @@ function setTime() {
         timeEl.textContent = secondsLeft + " seconds left";
 
         if (secondsLeft === 0) {
-            timeEl.textContent = "Quiz over";
+            clearInterval(timerInterval);
+            timeEl.textContent = "Looks like you ran out of time.";
             restartBut.style.display = "inline";
-            clearInterval(timerInterval);
+
             dNone();
             questionText.innerHTML = "Do you wanna give it another try?";
-        } else if (secondsLeft === 0) {
-            timeEl.textContent = "Time's up!";
-            clearInterval(timerInterval);
-            dNone();
-            questionText.innerHTML = "Do you wanna give it another try?";
+
         }
+
     }, 1000);
 
     setTimeout(function () {
         clearInterval(timerInterval);
-    }, 61000);
+    }, 62000);
 }
 
 
-
+////////////////////////////////////////////////////////////////////
 
 
 
