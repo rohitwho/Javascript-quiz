@@ -89,10 +89,13 @@ text-underline-offset: 4px;
   background-image: linear-gradient(94.3deg, rgba(26, 33, 64, 1) 10.9%, rgba(81, 84, 115, 1) 87.1%);
   color: white;
   padding: 8px 15px;
-  margin: 19px;
+  margin:19px;
   cursor: pointer;
 }
+#restart{
+  margin:69px;
 
+}
 #start {
   display: block;
 }
