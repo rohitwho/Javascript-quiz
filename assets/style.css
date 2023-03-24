@@ -17,7 +17,7 @@ body {
 
 .time {
   
-  
+  margin: 4px;
   text-decoration: underline;
   text-underline-offset: 10px;
 }
@@ -75,6 +75,7 @@ text-underline-offset: 4px;
   padding: 3px;
   border-radius: 4px;
   border-color: rgb(107, 105, 105);
+  text-transform: uppercase;
   
 
 
@@ -173,8 +174,9 @@ button:hover .play {
   justify-content: center;
 }
 .scoret{
+  margin: 4px;
   text-decoration: underline;
-  text-underline-offset: 5px;
+  text-underline-offset: 10px;
 
 }
 

@@ -230,7 +230,8 @@ function setTime() {
 
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            timeEl.textContent = "Looks like you ran out of time.";
+            timeEl.textContent = `Looks like you ran out of time ${userValue.value} `
+            scoret.innerHTML = `<h1> You Answered ${score}/${quizQuestions.length} questions correctly<h1>`
             restartBut.style.display = "inline";
 
             dNone();
