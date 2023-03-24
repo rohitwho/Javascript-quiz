@@ -13,6 +13,10 @@ const restartBut = document.getElementById('restart')
 const timeEl = document.querySelector(".time")
 const li = document.getElementsByTagName("li")
 const scoret = document.querySelector('.scoret')
+const userName = document.querySelector('.userInput')
+const userValue = document.getElementById('userValue')
+
+
 
 const quizQuestions = [
     {
@@ -90,7 +94,7 @@ startButton.addEventListener("click", () => {
 });
 
 function beginQuiz() {
-    
+
     dBlock()
     deSelectedAns()
     const currentQuizIndex = quizQuestions[currentQuiz]
@@ -104,6 +108,7 @@ function beginQuiz() {
     c_text.innerHTML = currentQuizIndex.c;
     d_text.innerHTML = currentQuizIndex.d;
 
+    userName.style.display = "none";
     startButton.style.display = "none";
     restartBut.style.display = "none";
     submit.style.display = "none"
@@ -117,9 +122,9 @@ restartBut.addEventListener("click", function () {
     currentQuiz = 0;
     score = 0;
     clearInterval(timerInterval);
-    
-    scoret.innerHTML ="";
-    beginQuiz(currentQuiz,score);
+
+    scoret.innerHTML = "";
+    beginQuiz(currentQuiz, score);
     secondsLeft = 60;
     setTime(secondsLeft);
 });
@@ -166,7 +171,7 @@ next.addEventListener("click", () => {
     }
 
     else {
-        scoret.innerHTML = `<h1>You answered ${score}/${quizQuestions.length} questions correctly<h1>`
+        scoret.innerHTML = `<h1>Congratulation ${userValue.value} You Answered ${score}/${quizQuestions.length} questions correctly<h1>`
         restartBut.style.display = "inline";
         questionText.innerHTML = "Do you wanna give it another try?"
         dNone()
@@ -197,6 +202,7 @@ function dNone() {
     li[3].style.display = "none";
     next.style.display = "none";
     startButton.style.display = "none";
+    userName.style.display = "none";
 };
 ////////////////////////////////////////////////////////////
 let secondsLeft = 60;
