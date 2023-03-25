@@ -182,7 +182,7 @@ next.addEventListener("click", () => {
 
 
     else {
-        scoret.innerHTML = `<h1>Congratulation ${userValue.value} You Answered ${score}/${quizQuestions.length} questions correctly<h1>`
+        scoret.innerHTML = `Congratulation ${userValue.value} You Answered ${score}/${quizQuestions.length} questions correctly`
         timeEl.style.display = "none"
         restartBut.style.display = "inline";
         questionText.innerHTML = "Do you wanna give it another try?"
@@ -230,8 +230,8 @@ function setTime() {
 
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            timeEl.textContent = `Looks like you ran out of time ${userValue.value} `
-            scoret.innerHTML = `<h1> You Answered ${score}/${quizQuestions.length} questions correctly<h1>`
+            timeEl.textContent = `Time's up ! ${userValue.value} `
+            scoret.innerHTML = ` You Answered ${score}/${quizQuestions.length} questions correctly`
             restartBut.style.display = "inline";
 
             dNone();
